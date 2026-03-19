@@ -1,18 +1,25 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import Timeline from '@/components/Timeline'
-import { getAllPapers } from '@/lib/papers'
+import Publications from '@/components/Publications'
+import About from '@/components/About'
+import Contact from '@/components/Contact'
+import Footer from '@/components/Footer'
+import { getAllPapers, getAllDomains } from '@/lib/papers'
 
 export default function Home() {
-  // This runs on the SERVER — like a Python function fetching data
-  // before sending the HTML response. Zero loading spinner needed.
   const papers = getAllPapers()
+  const domains = getAllDomains()
 
   return (
     <main>
       <Nav />
       <Hero />
       <Timeline papers={papers} />
+      <Publications papers={papers} domains={domains} />
+      <About />
+      <Contact />
+      <Footer />
     </main>
   )
 }

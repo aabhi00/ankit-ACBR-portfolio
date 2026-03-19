@@ -1,6 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import type { Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { fadeUp, staggerContainer, fadeIn } from '@/lib/animations'
 
 const PHRASES = [
   'Decoding how microglia age.',
@@ -9,7 +12,10 @@ const PHRASES = [
   'Building bridges between glia and cognition.',
 ]
 
-const DOMAINS = ['Neurobiology', 'Microglia Aging', 'Neurodegeneration', 'Brain Immunity', 'Glial Biology']
+const DOMAINS = [
+  'Neurobiology', 'Microglia Aging', 'Neurodegeneration',
+  'Brain Immunity', 'Glial Biology',
+]
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -18,18 +24,15 @@ export default function Hero() {
   const [charIndex, setCharIndex] = useState(0)
   const [deleting, setDeleting] = useState(false)
 
-  // ── Typewriter effect ──────────────────────────────────
+  // Typewriter
   useEffect(() => {
     const phrase = PHRASES[phraseIndex]
     const timeout = setTimeout(() => {
       if (!deleting) {
         const next = phrase.slice(0, charIndex + 1)
         setTyped(next)
-        if (next === phrase) {
-          setTimeout(() => setDeleting(true), 2200)
-        } else {
-          setCharIndex((c) => c + 1)
-        }
+        if (next === phrase) setTimeout(() => setDeleting(true), 2200)
+        else setCharIndex((c) => c + 1)
       } else {
         const next = phrase.slice(0, charIndex - 1)
         setTyped(next)
@@ -37,25 +40,21 @@ export default function Hero() {
           setDeleting(false)
           setCharIndex(0)
           setPhraseIndex((i) => (i + 1) % PHRASES.length)
-        } else {
-          setCharIndex((c) => c - 1)
-        }
+        } else setCharIndex((c) => c - 1)
       }
     }, deleting ? 48 : 82)
     return () => clearTimeout(timeout)
   }, [charIndex, deleting, phraseIndex])
 
-  // ── Neural canvas animation ────────────────────────────
+  // Neural canvas
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-
     type Node = { x: number; y: number; vx: number; vy: number; r: number }
     let nodes: Node[] = []
     let animId: number
-
     const resize = () => {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
@@ -67,7 +66,6 @@ export default function Hero() {
         r: Math.random() * 2 + 1,
       }))
     }
-
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       nodes.forEach((n) => {
@@ -94,72 +92,139 @@ export default function Hero() {
       }
       animId = requestAnimationFrame(draw)
     }
-
-    resize()
-    draw()
+    resize(); draw()
     window.addEventListener('resize', resize)
-    return () => {
-      cancelAnimationFrame(animId)
-      window.removeEventListener('resize', resize)
-    }
+    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize) }
   }, [])
 
   return (
-    <section
-      id="hero"
-      style={{
-        minHeight: '100vh', background: 'var(--ink)', color: 'var(--cream)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        position: 'relative', overflow: 'hidden',
-      }}
-    >
-      <canvas
-        ref={canvasRef}
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.35 }}
-      />
-      <div style={{ position: 'relative', zIndex: 2, maxWidth: 780, padding: '3rem 2rem', textAlign: 'center' }}>
-        <p style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase',
-          color: 'var(--amber2)', marginBottom: '1.2rem' }}>
+    <section id="hero" style={{
+      minHeight: '100vh', background: 'var(--ink)', color: 'var(--cream)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      position: 'relative', overflow: 'hidden',
+    }}>
+      <canvas ref={canvasRef} style={{
+        position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.35,
+      }} />
+
+      {/* staggerContainer makes each child animate one after another */}
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+        style={{ position: 'relative', zIndex: 2, maxWidth: 780, padding: '3rem 2rem', textAlign: 'center' }}
+      >
+        <motion.p variants={fadeUp} style={{
+          fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase',
+          color: 'var(--amber2)', marginBottom: '1.2rem',
+        }}>
           Research Portfolio · Neurobiology
-        </p>
-        <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(2.6rem,6vw,4.4rem)',
-          fontWeight: 400, lineHeight: 1.1, marginBottom: '.6rem' }}>
+        </motion.p>
+
+        <motion.h1 variants={fadeUp} style={{
+          fontFamily: 'Playfair Display, serif',
+          fontSize: 'clamp(2.6rem,6vw,4.4rem)', fontWeight: 400,
+          lineHeight: 1.1, marginBottom: '.6rem',
+        }}>
           Dr. <em style={{ fontStyle: 'italic', color: 'var(--moss3)' }}>Priya</em> Nair
-        </h1>
-        <p style={{ fontSize: '1rem', color: 'rgba(250,246,238,0.65)', marginBottom: '2rem',
-          fontWeight: 300, letterSpacing: '.04em' }}>
+        </motion.h1>
+
+        <motion.p variants={fadeUp} style={{
+          fontSize: '1rem', color: 'rgba(250,246,238,0.65)',
+          marginBottom: '2rem', fontWeight: 300, letterSpacing: '.04em',
+        }}>
           Assistant Professor, Department of Zoology &amp; Neurobiology
-        </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem',
-          justifyContent: 'center', marginBottom: '2.5rem' }}>
+        </motion.p>
+
+        {/* Domain pills — each one staggers in */}
+        <motion.div
+          variants={staggerContainer}
+          style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem',
+            justifyContent: 'center', marginBottom: '2.5rem' }}
+        >
           {DOMAINS.map((d) => (
-            <span key={d} style={{
-              background: 'rgba(250,246,238,0.07)', border: '1px solid rgba(250,246,238,0.14)',
-              padding: '.3rem .9rem', borderRadius: 999, fontSize: '.78rem',
-              color: 'var(--sage2)', letterSpacing: '.05em',
-            }}>{d}</span>
+            <motion.span
+              key={d}
+              variants={scaleInPill}
+              whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}
+              style={{
+                background: 'rgba(250,246,238,0.07)',
+                border: '1px solid rgba(250,246,238,0.14)',
+                padding: '.3rem .9rem', borderRadius: 999, fontSize: '.78rem',
+                color: 'var(--sage2)', letterSpacing: '.05em', cursor: 'default',
+              }}
+            >
+              {d}
+            </motion.span>
           ))}
-        </div>
-        <p style={{ fontSize: '1.1rem', color: 'var(--amber3)', fontFamily: 'Playfair Display, serif',
-          fontStyle: 'italic', minHeight: '1.6em', marginBottom: '2.4rem' }}>
+        </motion.div>
+
+        <motion.p variants={fadeIn} style={{
+          fontSize: '1.1rem', color: 'var(--amber3)',
+          fontFamily: 'Playfair Display, serif', fontStyle: 'italic',
+          minHeight: '1.6em', marginBottom: '2.4rem',
+        }}>
           {typed}<span style={{ opacity: 0.6 }}>|</span>
-        </p>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <a href="#timeline" style={{
-            padding: '.65rem 1.6rem', borderRadius: 6, fontSize: '.85rem', fontWeight: 500,
-            background: 'var(--moss)', color: '#fff', textDecoration: 'none', letterSpacing: '.04em',
-          }}>
-            Explore Research Journey
-          </a>
-          <a href="#publications" style={{
-            padding: '.65rem 1.6rem', borderRadius: 6, fontSize: '.85rem', fontWeight: 500,
-            background: 'transparent', color: 'var(--amber2)', textDecoration: 'none',
-            border: '1px solid rgba(196,118,42,0.4)', letterSpacing: '.04em',
-          }}>
-            View Publications
-          </a>
-        </div>
-      </div>
+        </motion.p>
+
+        <motion.div
+          variants={fadeUp}
+          style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}
+        >
+          {[
+            { href: '#timeline', label: 'Explore Research Journey', primary: true },
+            { href: '#publications', label: 'View Publications', primary: false },
+          ].map((btn) => (
+            <motion.a
+              key={btn.href}
+              href={btn.href}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              style={{
+                padding: '.65rem 1.6rem', borderRadius: 6, fontSize: '.85rem',
+                fontWeight: 500, letterSpacing: '.04em', textDecoration: 'none',
+                background: btn.primary ? 'var(--moss)' : 'transparent',
+                color: btn.primary ? '#fff' : 'var(--amber2)',
+                border: btn.primary ? 'none' : '1px solid rgba(196,118,42,0.4)',
+              }}
+            >
+              {btn.label}
+            </motion.a>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.5rem' }}
+      >
+        <span style={{ fontSize: '.72rem', letterSpacing: '.12em',
+          textTransform: 'uppercase', color: 'rgba(250,246,238,0.3)' }}>
+          Scroll
+        </span>
+        <motion.div
+          animate={{ scaleY: [0.8, 1, 0.8], opacity: [0.3, 0.8, 0.3] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ width: 1, height: 32,
+            background: 'linear-gradient(to bottom, transparent, rgba(250,246,238,0.3))' }}
+        />
+      </motion.div>
     </section>
   )
+}
+
+
+
+
+const scaleInPill: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+  },
 }

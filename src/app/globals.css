@@ -1,26 +1,47 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #1e1a14;
+  --ink2: #4a3f2f;
+  --ink3: #7a6a52;
+  --cream: #faf6ee;
+  --parchment: #f2ead8;
+  --warm: #e8dfc8;
+  --moss: #3a5c3a;
+  --moss2: #5a8a4a;
+  --moss3: #8ab874;
+  --amber: #c4762a;
+  --amber2: #e8a84a;
+  --amber3: #f5d080;
+  --rust: #8c3a1e;
+  --sage: #6b8c6a;
+  --sage2: #a4c49a;
+  --border: rgba(60, 45, 20, 0.12);
+  --shadow: rgba(30, 20, 10, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
 }

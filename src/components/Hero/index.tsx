@@ -1,0 +1,165 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+
+const PHRASES = [
+  'Decoding how microglia age.',
+  'Mapping the immune brain landscape.',
+  'Chasing the roots of neurodegeneration.',
+  'Building bridges between glia and cognition.',
+]
+
+const DOMAINS = ['Neurobiology', 'Microglia Aging', 'Neurodegeneration', 'Brain Immunity', 'Glial Biology']
+
+export default function Hero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [typed, setTyped] = useState('')
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const [charIndex, setCharIndex] = useState(0)
+  const [deleting, setDeleting] = useState(false)
+
+  // ── Typewriter effect ──────────────────────────────────
+  useEffect(() => {
+    const phrase = PHRASES[phraseIndex]
+    const timeout = setTimeout(() => {
+      if (!deleting) {
+        const next = phrase.slice(0, charIndex + 1)
+        setTyped(next)
+        if (next === phrase) {
+          setTimeout(() => setDeleting(true), 2200)
+        } else {
+          setCharIndex((c) => c + 1)
+        }
+      } else {
+        const next = phrase.slice(0, charIndex - 1)
+        setTyped(next)
+        if (next === '') {
+          setDeleting(false)
+          setCharIndex(0)
+          setPhraseIndex((i) => (i + 1) % PHRASES.length)
+        } else {
+          setCharIndex((c) => c - 1)
+        }
+      }
+    }, deleting ? 48 : 82)
+    return () => clearTimeout(timeout)
+  }, [charIndex, deleting, phraseIndex])
+
+  // ── Neural canvas animation ────────────────────────────
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    type Node = { x: number; y: number; vx: number; vy: number; r: number }
+    let nodes: Node[] = []
+    let animId: number
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+      nodes = Array.from({ length: 55 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 2 + 1,
+      }))
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      nodes.forEach((n) => {
+        n.x += n.vx; n.y += n.vy
+        if (n.x < 0 || n.x > canvas.width) n.vx *= -1
+        if (n.y < 0 || n.y > canvas.height) n.vy *= -1
+        ctx.beginPath()
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2)
+        ctx.fillStyle = 'rgba(196,118,42,0.6)'
+        ctx.fill()
+      })
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y)
+          if (d < 120) {
+            ctx.beginPath()
+            ctx.moveTo(nodes[i].x, nodes[i].y)
+            ctx.lineTo(nodes[j].x, nodes[j].y)
+            ctx.strokeStyle = `rgba(90,138,74,${0.4 * (1 - d / 120)})`
+            ctx.lineWidth = 0.5
+            ctx.stroke()
+          }
+        }
+      }
+      animId = requestAnimationFrame(draw)
+    }
+
+    resize()
+    draw()
+    window.addEventListener('resize', resize)
+    return () => {
+      cancelAnimationFrame(animId)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
+  return (
+    <section
+      id="hero"
+      style={{
+        minHeight: '100vh', background: 'var(--ink)', color: 'var(--cream)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        position: 'relative', overflow: 'hidden',
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.35 }}
+      />
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: 780, padding: '3rem 2rem', textAlign: 'center' }}>
+        <p style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase',
+          color: 'var(--amber2)', marginBottom: '1.2rem' }}>
+          Research Portfolio · Neurobiology
+        </p>
+        <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(2.6rem,6vw,4.4rem)',
+          fontWeight: 400, lineHeight: 1.1, marginBottom: '.6rem' }}>
+          Dr. <em style={{ fontStyle: 'italic', color: 'var(--moss3)' }}>Priya</em> Nair
+        </h1>
+        <p style={{ fontSize: '1rem', color: 'rgba(250,246,238,0.65)', marginBottom: '2rem',
+          fontWeight: 300, letterSpacing: '.04em' }}>
+          Assistant Professor, Department of Zoology &amp; Neurobiology
+        </p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem',
+          justifyContent: 'center', marginBottom: '2.5rem' }}>
+          {DOMAINS.map((d) => (
+            <span key={d} style={{
+              background: 'rgba(250,246,238,0.07)', border: '1px solid rgba(250,246,238,0.14)',
+              padding: '.3rem .9rem', borderRadius: 999, fontSize: '.78rem',
+              color: 'var(--sage2)', letterSpacing: '.05em',
+            }}>{d}</span>
+          ))}
+        </div>
+        <p style={{ fontSize: '1.1rem', color: 'var(--amber3)', fontFamily: 'Playfair Display, serif',
+          fontStyle: 'italic', minHeight: '1.6em', marginBottom: '2.4rem' }}>
+          {typed}<span style={{ opacity: 0.6 }}>|</span>
+        </p>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <a href="#timeline" style={{
+            padding: '.65rem 1.6rem', borderRadius: 6, fontSize: '.85rem', fontWeight: 500,
+            background: 'var(--moss)', color: '#fff', textDecoration: 'none', letterSpacing: '.04em',
+          }}>
+            Explore Research Journey
+          </a>
+          <a href="#publications" style={{
+            padding: '.65rem 1.6rem', borderRadius: 6, fontSize: '.85rem', fontWeight: 500,
+            background: 'transparent', color: 'var(--amber2)', textDecoration: 'none',
+            border: '1px solid rgba(196,118,42,0.4)', letterSpacing: '.04em',
+          }}>
+            View Publications
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}

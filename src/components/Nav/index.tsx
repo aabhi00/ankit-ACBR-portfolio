@@ -1,50 +1,66 @@
 'use client'
 
-// 'use client' means this component runs in the browser, not the server.
-// Python parallel: think of server components as your FastAPI backend,
-// and client components as the JavaScript that runs after the page loads.
-
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 
 export default function Nav() {
-  const [visible, setVisible] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-  // useEffect = code that runs AFTER the component loads in the browser
-  // Python parallel: like an __init__ that fires after setup is done
   useEffect(() => {
-    const handleScroll = () => setVisible(window.scrollY > 80)
+    const handleScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-transform duration-300"
-      style={{
-        background: 'rgba(250,246,238,0.92)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid var(--border)',
-        transform: visible ? 'translateY(0)' : 'translateY(-100%)',
-        padding: '.7rem 2rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}
-    >
-      <span style={{ fontFamily: 'Playfair Display, serif', fontSize: '.95rem', color: 'var(--ink)' }}>
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+      padding: scrolled ? '.7rem 2rem' : '1.2rem 2rem',
+      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+      background: scrolled ? 'rgba(250,246,238,0.95)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(12px)' : 'none',
+      borderBottom: scrolled ? '1px solid var(--border)' : 'none',
+      transition: 'all 0.35s ease',
+    }}>
+
+      {/* Name */}
+      <span style={{
+        fontFamily: 'Playfair Display, serif',
+        fontSize: '.95rem',
+        color: scrolled ? 'var(--ink)' : 'var(--cream)',
+        fontWeight: 400,
+        whiteSpace: 'nowrap',
+        transition: 'color 0.35s ease',
+      }}>
         Dr. Priya Nair
       </span>
-      <div style={{ display: 'flex', gap: '1.5rem' }}>
+
+      {/* Links */}
+      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
         {['Timeline', 'Publications', 'About', 'Contact'].map((item) => (
-          <Link
-            key={item}
+          
+           <a key={item}
             href={`#${item.toLowerCase()}`}
-            style={{ fontSize: '.8rem', color: 'var(--ink2)', textDecoration: 'none',
-              letterSpacing: '.06em', textTransform: 'uppercase', opacity: .7 }}
+            style={{
+              fontSize: '.75rem',
+              color: scrolled ? 'var(--ink2)' : 'rgba(250,246,238,0.75)',
+              textDecoration: 'none',
+              letterSpacing: '.1em',
+              textTransform: 'uppercase',
+              fontWeight: 500,
+              transition: 'color 0.35s ease, opacity 0.2s ease',
+              whiteSpace: 'nowrap',
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.color =
+                scrolled ? 'var(--ink)' : '#fff'
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.color =
+                scrolled ? 'var(--ink2)' : 'rgba(250,246,238,0.75)'
+            }}
           >
             {item}
-          </Link>
+          </a>
         ))}
       </div>
     </nav>

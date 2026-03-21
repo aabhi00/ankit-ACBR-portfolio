@@ -3,8 +3,8 @@
 import { useState } from 'react'
 
 const LINKS = [
-  { icon: '📧', label: 'Email', value: 'p.nair@university.ac.in',
-    href: 'mailto:p.nair@university.ac.in', bg: '#fff0e0' },
+  { icon: '📧', label: 'Email', value: 'zoology.du.ac.in (verified)',
+  href: 'mailto:shashank@zoology.du.ac.in', bg: '#fff0e0' },
   { icon: '🎓', label: 'Google Scholar', value: 'View Profile', href: '#', bg: '#e8f4e8' },
   { icon: '🔬', label: 'ResearchGate', value: 'Research Network', href: '#', bg: '#e8eef8' },
   { icon: '💼', label: 'LinkedIn', value: 'Professional Network', href: '#', bg: '#f0e8f0' },

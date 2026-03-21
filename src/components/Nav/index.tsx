@@ -31,7 +31,7 @@ export default function Nav() {
         whiteSpace: 'nowrap',
         transition: 'color 0.35s ease',
       }}>
-        Dr. Priya Nair
+        Dr. Shashank Kumar Maurya
       </span>
 
       {/* Links */}

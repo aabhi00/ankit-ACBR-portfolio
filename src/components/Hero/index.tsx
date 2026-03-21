@@ -6,15 +6,15 @@ import { motion } from 'framer-motion'
 import { fadeUp, staggerContainer, fadeIn } from '@/lib/animations'
 
 const PHRASES = [
-  'Decoding how microglia age.',
-  'Mapping the immune brain landscape.',
-  'Chasing the roots of neurodegeneration.',
-  'Building bridges between glia and cognition.',
+  'Decoding how microglia regulate brain homeostasis.',
+  'Mapping Pax6 networks in the aging brain.',
+  'Chasing the roots of neuroinflammation.',
+  'Bridging gut-brain axis and neurodegeneration.',
 ]
 
 const DOMAINS = [
-  'Neurobiology', 'Microglia Aging', 'Neurodegeneration',
-  'Brain Immunity', 'Glial Biology',
+  'Neurobiology', 'Microglia Biology', 'Neurodegeneration',
+  'Neuroimmunology', 'Epigenetic Regulation',
 ]
 
 export default function Hero() {
@@ -126,14 +126,14 @@ export default function Hero() {
           fontSize: 'clamp(2.6rem,6vw,4.4rem)', fontWeight: 400,
           lineHeight: 1.1, marginBottom: '.6rem',
         }}>
-          Dr. <em style={{ fontStyle: 'italic', color: 'var(--moss3)' }}>Priya</em> Nair
+          Dr. <em style={{ fontStyle: 'italic', color: 'var(--moss3)' }}>Shashank Kumar</em> Maurya
         </motion.h1>
 
         <motion.p variants={fadeUp} style={{
           fontSize: '1rem', color: 'rgba(250,246,238,0.65)',
           marginBottom: '2rem', fontWeight: 300, letterSpacing: '.04em',
         }}>
-          Assistant Professor, Department of Zoology &amp; Neurobiology
+          Assistant Professor, Department of Zoology, University of Delhi
         </motion.p>
 
         {/* Domain pills — each one staggers in */}

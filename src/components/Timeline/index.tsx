@@ -1,10 +1,10 @@
 'use client'
-
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useRef } from 'react'
-import { motion } from 'framer-motion'
 import type { Paper } from '@/types'
 import Flashcard from '@/components/Flashcard'
 import { fadeUp, staggerContainer, scaleIn } from '@/lib/animations'
+
 
 interface TimelineProps { papers: Paper[] }
 
@@ -141,19 +141,21 @@ export default function Timeline({ papers }: TimelineProps) {
         </div>
       </div>
 
-      {/* Flashcard with animated entrance */}
-      {activePaper && (
-        <motion.div
-          key={activePaper.id}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 8 }}
-          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          style={{ maxWidth: 1100, margin: '0 auto', padding: '0 2rem' }}
-        >
-          <Flashcard paper={activePaper} onClose={() => setActivePaper(null)} />
-        </motion.div>
-      )}
+{/* Flashcard with animated entrance */}
+<AnimatePresence mode="wait">
+  {activePaper && (
+    <motion.div
+      key={activePaper.id}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 8 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      style={{ maxWidth: 1100, margin: '0 auto', padding: '0 2rem' }}
+    >
+      <Flashcard paper={activePaper} onClose={() => setActivePaper(null)} />
+    </motion.div>
+  )}
+</AnimatePresence>
     </section>
   )
 }

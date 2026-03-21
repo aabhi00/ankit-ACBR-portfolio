@@ -1,9 +1,4 @@
-// Python equivalent:
-// from dataclasses import dataclass
-// @dataclass
-// class Paper:
-//     year: int
-//     title: str  ... etc.
+
 
 export interface Paper {
   id: string

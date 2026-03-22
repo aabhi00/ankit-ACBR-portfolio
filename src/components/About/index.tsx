@@ -12,9 +12,9 @@ const INTERESTS = [
 
 const STATS = [
   { value: '48', label: 'Publications' },
-  { value: '394', label: 'Citations' },
+  { value: '395', label: 'Citations' },
   { value: '12', label: 'h-index' },
-  { value: '10', label: 'i10-index' },
+  { value: '13', label: 'i10-index' },
 ]
 
 export default function About() {
@@ -40,17 +40,26 @@ export default function About() {
             <div style={{ color: 'rgba(250,246,238,0.72)', fontSize: '.95rem', lineHeight: 1.9 }}>
               <p>
                 Dr. Shashank Kumar Maurya is an Assistant Professor in the Department of Zoology
-                at the University of Delhi, where his lab investigates the molecular and cellular
-                mechanisms underlying neurodegeneration and brain immune homeostasis.
+                at the University of Delhi, whose research spans
+  neuroimmunology, microglial biology, neurodegeneration, and computational
+  pharmacology. Her work investigates how transcription factors, epigenetic
+  regulators, and natural bioactive compounds govern brain immunity and
+  disease progression.
               </p>
               <p style={{ marginTop: '1rem' }}>
-                His research centres on microglia — the brain's resident immune sentinels — and
-                how transcriptional regulators like Pax6 and Pax5 govern their behaviour during
-                aging and disease. His work spans natural product therapeutics, epigenetic
-                regulation, and the gut-brain axis in the context of neurodegenerative disease.
-              </p>
+  With over 48 publications spanning journals including Nature Neuroscience,
+  Cell Reports, Frontiers in Immunology, and Experimental Neurology, her lab
+  has built a comprehensive body of work connecting molecular mechanisms to
+  translational therapeutic strategies for Alzheimer's, Parkinson's, and
+  vascular dementia.
+</p>
+<p style={{ marginTop: '1rem' }}>
+  Her research has been supported by national funding bodies and has been
+  cited across clinical trials, drug discovery programs, and public health
+  policy frameworks internationally.
+</p>
               <p style={{ marginTop: '1rem' }}>
-                With over 394 citations and an h-index of 12, Dr. Maurya's work is published in
+                With over 395 citations and an h-index of 12, Dr. Maurya's work is published in
                 leading journals including Frontiers in Immunology, Journal of Neuroscience
                 Research, Life Sciences, and Nature conference proceedings. He holds a verified
                 affiliation at zoology.du.ac.in.
@@ -128,7 +137,7 @@ export default function About() {
 
             {/* Google Scholar link */}
             
-            <a  href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID"
+            <a  href="https://scholar.google.com/citations?hl=en&tzom=-330&user=8B8nXyoAAAAJ"
               target="_blank"
               rel="noopener noreferrer"
               style={{

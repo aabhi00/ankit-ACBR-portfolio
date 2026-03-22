@@ -42,7 +42,7 @@ export default function About() {
                 Dr. Shashank Kumar Maurya is an Assistant Professor in the Department of Zoology
                 at the University of Delhi, whose research spans
   neuroimmunology, microglial biology, neurodegeneration, and computational
-  pharmacology. Her work investigates how transcription factors, epigenetic
+  pharmacology. His work investigates how transcription factors, epigenetic
   regulators, and natural bioactive compounds govern brain immunity and
   disease progression.
               </p>

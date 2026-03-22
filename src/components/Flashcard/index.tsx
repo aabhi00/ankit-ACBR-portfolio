@@ -134,6 +134,8 @@ export default function Flashcard({ paper, onClose }: FlashcardProps) {
         )}
         
         <a  href={paper.link}
+        target="_blank"
+        rel="noopener noreferrer"
           style={{
             fontSize: '.8rem', color: 'var(--moss)', textDecoration: 'none',
             border: '1px solid rgba(90,138,74,0.3)', padding: '.3rem .8rem',

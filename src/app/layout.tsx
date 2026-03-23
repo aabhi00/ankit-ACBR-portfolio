@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   // The official URL of your site — tells Google this is
   // the canonical (authoritative) version, preventing
   // duplicate content penalties
-  metadataBase: new URL('https://shashank-portfolio-cg7p0viiu-aabhi00s-projects.vercel.app'),
+  metadataBase: new URL('https://shashank-portfolio-xi.vercel.app'),
 
   // Canonical URL — prevents duplicate indexing if your site
   // is accessible from multiple URLs
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'profile',           // tells platforms this is a person's profile
     locale: 'en_IN',           // language and region
-    url: 'https://shashank-portfolio-cg7p0viiu-aabhi00s-projects.vercel.app',
+    url: 'https://shashank-portfolio-xi.vercel.app',
     siteName: 'Dr. Shashank Kumar Maurya — Research Portfolio',
     title: 'Dr. Shashank Kumar Maurya | Neurobiology & Neuroimmunology',
     description:

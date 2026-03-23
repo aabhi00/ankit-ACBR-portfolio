@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shashank-portfolio-cg7p0viiu-aabhi00s-projects.vercel.app/sitemap.xml
+Sitemap: https://shashank-portfolio-xi.vercel.app/sitemap.xml

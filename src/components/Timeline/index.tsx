@@ -251,15 +251,19 @@ export default function Timeline({ papers }: TimelineProps) {
                   {/* Year label — always just below the dot */}
                   <p style={{
                     position: 'absolute',
-                    top: LINE_Y + DOT_SIZE / 2 + 6,
+                    top: isAbove
+                       ? LINE_Y + DOT_SIZE / 2 + 6
+                       : LINE_Y - DOT_SIZE / 2 - 18,
+
                     left: '50%',
                     transform: 'translateX(-50%)',
                     fontSize: '.6rem',
                     fontWeight: 600,
-                    color: 'var(--amber)',
+                     color: isActive ? 'var(--moss)' : 'var(--amber)',
                     letterSpacing: '.08em',
                     whiteSpace: 'nowrap',
                     zIndex: 2,
+                    transition: 'color 0.25s',
                   }}>
                     {paper.year}
                   </p>

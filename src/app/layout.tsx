@@ -35,28 +35,23 @@ export const metadata: Metadata = {
   // This appears as the blue clickable title in Google results
   // Rule: under 60 characters, include the person's name
   title: {
-    default: 'Dr. Shashank Kumar Maurya | Neurobiology & Neuroimmunology',
-    // template applies to sub-pages: "About | Dr. Shashank Shekhar"
-    template: '%s | Dr. Shashank Kumar Maurya',
+    default: 'Dr. Ankit Singh | Neuroscience',
+   
+    template: '%s | Dr. Ankit Singh',
   },
 
   // This appears as the grey text below the title in Google results
   // Rule: 150-160 characters, describe what the page offers
   description:
-    'Assistant Professor specialising in Neurobiology, Microglia Biology, ' +
-    'Neuroimmunology and Neurodegeneration. 48 publications, 395 citations. ' +
-    'Department of Zoology, University of Delhi.',
+    'Research Scholar specialising in Neuroscience, ' +
+    '4 publications, 21 citations. ' +
+    'Department of ACBR, University of Delhi.',
 
   // Keywords — less important for Google now but still used
   // by academic search engines like Semantic Scholar
   keywords: [
-    'Shashank Kumar Maurya',
-    'Neurobiology',
-    'Microglia',
-    'Neuroimmunology',
-    'Neurodegeneration',
-    'Pax6',
-    'Iba1',
+    'Ankit Singh',
+    'Neuroscience',
     'University of Delhi',
     'Zoology',
     'Brain Research',
@@ -87,8 +82,8 @@ export const metadata: Metadata = {
     type: 'profile',           // tells platforms this is a person's profile
     locale: 'en_IN',           // language and region
     url: 'https://shashank-portfolio-xi.vercel.app',
-    siteName: 'Dr. Shashank Kumar Maurya — Research Portfolio',
-    title: 'Dr. Shashank Kumar Maurya | Neurobiology & Neuroimmunology',
+    siteName: 'Dr. Ankit Singh — Research Portfolio',
+    title: 'Dr. Ankit Singh | Neurobiology & Neuroscience',
     description:
       'Exploring the molecular frontiers of brain immunity, microglia aging, ' +
       'and neurodegeneration. 48 peer-reviewed publications.',
@@ -97,18 +92,18 @@ export const metadata: Metadata = {
     // For now this is a placeholder
     images: [
       {
-        url: '/Dr. Shashank Kumar Maurya.jpg',   // place this file in /public folder
+        url: '/Dr. Ankit Singh.jpg',   // place this file in /public folder
         width: 1200,
         height: 630,
-        alt: 'Dr. Shashank Kumar Maurya — Neurobiology Research Portfolio',
+        alt: 'Dr. Ankit Singh — Neuroscience Research Portfolio',
       },
     ],
     // Profile-specific Open Graph fields
     // These power Google's knowledge panel if your page
     // gets enough authority
-    firstName: 'Shashank Kumar',
-    lastName: 'Maurya',
-    username: 'shashank-kumar-maurya-neuro',
+    firstName: 'Ankit',
+    lastName: 'Singh',
+    username: 'Ankit-Singh-neuro',
     gender: 'male',
   },
 
@@ -117,7 +112,7 @@ export const metadata: Metadata = {
   // summary_large_image = big image card format
   twitter: {
     card: 'summary_large_image',
-    title: 'Dr. Shashank Kumar Maurya | Neurobiology Research',
+    title: 'Dr. Ankit Singh | Neuroscience Research',
     description:
       'Microglia biology, neurodegeneration, and neuroimmunology research. ' +
       '48 publications from University of Delhi.',
@@ -149,10 +144,11 @@ export const metadata: Metadata = {
   },
 
   // ── AUTHOR INFO ────────────────────────────────────────
-  authors: [{ name: 'Dr. Shashank Kumar Maurya' }],
-  creator: 'Dr. Shashank Kumar Maurya',
-  publisher: 'University of Delhi',
+  authors: [{ name: 'Dr. Ankit Singh' }],
+  creator: 'Abhishek Maurya',
+  publisher: 'Dr. Ankit Singh',
 }
+
 
 export default function RootLayout({
   children,

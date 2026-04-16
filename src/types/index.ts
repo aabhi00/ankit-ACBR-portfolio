@@ -5,7 +5,7 @@ export interface Paper {
   year: number
   title: string
   journal: string
-  domain: 'Neurobiology' | 'Microglia Aging' | 'Neurodegenerative Disease'
+  domain: 'Neuroscience' | 'Neurobiology'  
   impact: string
   problem: string
   method: string

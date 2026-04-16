@@ -7,7 +7,7 @@ export default function Footer() {
       textAlign: 'center',
     }}>
       <p style={{ fontSize: '.78rem', color: 'rgba(250,246,238,0.25)' }}>
-        © {new Date().getFullYear()} Dr. Shashank Maurya · Department of Zoology 
+        © {new Date().getFullYear()} Dr. Ankit Singh · Department of ACBR 
       </p>
     </footer>
   )

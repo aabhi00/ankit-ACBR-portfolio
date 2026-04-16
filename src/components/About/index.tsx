@@ -1,20 +1,21 @@
+
 const EDUCATION = [
-  { degree: 'Ph.D. in Neuroscience', institution: 'University of Delhi' },
-  { degree: 'Postdoctoral Research', institution: 'Advanced Neurobiology Program' },
-  { degree: 'Assistant Professor, Zoology', institution: 'University of Delhi · Present' },
+  { degree: 'Ph.D. Scholar, Neuroscience', institution: 'Dr. B.R. Ambedkar Center for Biomedical Research, DU · Present' },
+  { degree: "Master's Degree", institution: 'Banaras Hindu University · 2019–2021' },
+  { degree: "Bachelor's Degree", institution: 'Banaras Hindu University · 2016–2019' },
 ]
 
 const INTERESTS = [
-  'Microglia biology', 'Neuroinflammation', 'Pax6 transcription factor',
-  'Epigenetic regulation', "Alzheimer's disease", 'Gut-brain axis',
-  'Natural product therapeutics', 'Neuroimmunology',
+  'Neuropharmacology', '3D-QSAR Modeling', "Parkinson's Disease",
+  'Astrocyte Biology', 'Drug Discovery', 'Neuroprotection',
+  'Stem Cell Research', 'Computational Biology'
 ]
 
 const STATS = [
-  { value: '48', label: 'Publications' },
-  { value: '395', label: 'Citations' },
-  { value: '12', label: 'h-index' },
-  { value: '13', label: 'i10-index' },
+  { value: '4', label: 'Publications' },
+  { value: '21', label: 'Citations' },
+  { value: '3', label: 'h-index' },
+  { value: '0', label: 'i10-index' },
 ]
 
 export default function About() {
@@ -24,12 +25,12 @@ export default function About() {
 
         <span style={{ fontSize: '.7rem', letterSpacing: '.2em', textTransform: 'uppercase',
           color: 'var(--amber2)', marginBottom: '.8rem', display: 'block' }}>
-          The Scientist
+          The Researcher
         </span>
         <h2 style={{ fontFamily: 'Playfair Display, serif',
           fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 400,
           color: 'var(--cream)', marginBottom: '3rem' }}>
-          About Dr. Shashank Kumar Maurya
+          About Ankit Singh
         </h2>
 
         <div style={{ display: 'grid',
@@ -39,36 +40,19 @@ export default function About() {
           <div>
             <div style={{ color: 'rgba(250,246,238,0.72)', fontSize: '.95rem', lineHeight: 1.9 }}>
               <p>
-                Dr. Shashank Kumar Maurya is an Assistant Professor in the Department of Zoology
-                at the University of Delhi, whose research spans
-  neuroimmunology, microglial biology, neurodegeneration, and computational
-  pharmacology. His work investigates how transcription factors, epigenetic
-  regulators, and natural bioactive compounds govern brain immunity and
-  disease progression.
+                Ankit Singh is a Research Scholar in Neuroscience at the Dr. B.R. Ambedkar Center for Biomedical Research (ACBR), University of Delhi. His research bridges the gap between computational chemistry and neurobiology, with a strong focus on discovering targeted therapies for neurodegenerative disorders.
               </p>
               <p style={{ marginTop: '1rem' }}>
-  With over 48 publications spanning journals including Nature Neuroscience,
-  Cell Reports, Frontiers in Immunology, and Experimental Neurology, her lab
-  has built a comprehensive body of work connecting molecular mechanisms to
-  translational therapeutic strategies for Alzheimer's, Parkinson's, and
-  vascular dementia.
-</p>
-<p style={{ marginTop: '1rem' }}>
-  Her research has been supported by national funding bodies and has been
-  cited across clinical trials, drug discovery programs, and public health
-  policy frameworks internationally.
-</p>
+                His recent work leverages advanced 3D-QSAR pharmacophore modeling to identify novel A2AR antagonists, demonstrating significant neuroprotective effects in models of Parkinson's disease. Furthermore, his research investigates the resilience and functional maintenance of fetal neural stem cell-derived astrocytes under hypoxic conditions.
+              </p>
               <p style={{ marginTop: '1rem' }}>
-                With over 395 citations and an h-index of 12, Dr. Maurya's work is published in
-                leading journals including Frontiers in Immunology, Journal of Neuroscience
-                Research, Life Sciences, and Nature conference proceedings. He holds a verified
-                affiliation at zoology.du.ac.in.
+                With a growing body of work published in peer-reviewed journals such as Neurotoxicology, Molecular Diversity, and Genes, his findings contribute valuable insights into oxidative stress, apoptotic modulation, and early-stage drug discovery.
               </p>
             </div>
 
             <p style={{ fontSize: '.7rem', letterSpacing: '.18em', textTransform: 'uppercase',
               color: 'var(--amber2)', marginTop: '2rem', marginBottom: '.8rem' }}>
-              Positions
+              Education & Positions
             </p>
             {EDUCATION.map((item) => (
               <div key={item.degree} style={{ display: 'flex', gap: '.8rem', marginBottom: '.9rem' }}>
@@ -107,12 +91,22 @@ export default function About() {
             <div style={{
               width: '100%', maxWidth: 320, aspectRatio: '3/4',
               background: 'linear-gradient(135deg, var(--moss) 0%, var(--ink) 100%)',
-              borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center',
+              borderRadius: 14, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
-              <span style={{ fontFamily: 'Playfair Display, serif', fontSize: '5rem',
+               <img
+                  src="/ankit.jpeg"   // <-- put your image path here
+                  
+                  style={{
+                      width: '100%',     // 🔥 ADD THIS
+                          height: '100%',
+                          objectFit: 'cover',
+                          display: 'block' 
+                  }}
+                />
+              {/* <span style={{ fontFamily: 'Playfair Display, serif', fontSize: '5rem',
                 color: 'rgba(250,246,238,0.25)', fontStyle: 'italic' }}>
-                SM
-              </span>
+                AS
+              </span> */}
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr',
@@ -135,9 +129,8 @@ export default function About() {
               ))}
             </div>
 
-            {/* Google Scholar link */}
-            
-            <a  href="https://scholar.google.com/citations?hl=en&tzom=-330&user=8B8nXyoAAAAJ"
+            {/* Note: Update the href below with your actual Google Scholar ID */}
+            <a  href="https://scholar.google.com/citations?user=yRtQFQUAAAAJ&hl=en"
               target="_blank"
               rel="noopener noreferrer"
               style={{

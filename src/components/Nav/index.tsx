@@ -52,7 +52,7 @@ export default function Nav() {
           whiteSpace: 'nowrap',
           transition: 'color 0.35s ease',
         }}>
-          Dr. Shashank Kumar Maurya
+          Dr. Ankit Singh
         </span>
 
         {/* Desktop links — visible only above 768px */}

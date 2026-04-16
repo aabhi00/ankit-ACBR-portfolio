@@ -42,3 +42,10 @@ next-env.d.ts
 
 .vercel
 .env*.local
+
+# env files (NEVER commit these)
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local

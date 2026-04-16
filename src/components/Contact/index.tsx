@@ -5,9 +5,9 @@ import { useState } from 'react'
 const LINKS = [
   { icon: '📧', label: 'Email', value: 'zoology.du.ac.in (verified)',
   href: 'mailto:shashank@zoology.du.ac.in',  target: "_blank", bg: '#fff0e0' },
-  { icon: '🎓', label: 'Google Scholar', value: 'View Profile', href: 'https://scholar.google.com/citations?hl=en&tzom=-330&user=8B8nXyoAAAAJ', target: "_blank", bg: '#e8f4e8' },
-  { icon: '🔬', label: 'ResearchGate', value: 'Research Network', href: '#',  target: "_blank", bg: '#e8eef8' },
-  { icon: '💼', label: 'LinkedIn', value: 'Professional Network', href: '#', target: "_blank", bg: '#f0e8f0' },
+  { icon: '🎓', label: 'Google Scholar', value: 'View Profile', href: 'https://scholar.google.com/citations?user=yRtQFQUAAAAJ&hl=en', target: "_blank", bg: '#e8f4e8' },
+  { icon: '🔬', label: 'ResearchGate', value: 'Research Network', href: 'https://www.researchgate.net/profile/Ankit-Singh-194',  target: "_blank", bg: '#e8eef8' },
+  { icon: '💼', label: 'LinkedIn', value: 'Professional Network', href: 'https://www.linkedin.com/in/dr-ankit-singh-ph-d-a96abb1a7/', target: "_blank", bg: '#f0e8f0' },
 ]
 
 const FORMSPREE_URL = "https://formspree.io/f/mnjgyyoy"

@@ -15,60 +15,57 @@ export default function StructuredData() {
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Shashank Kumar Maurya',
-    honorificPrefix: 'Dr.',
-    jobTitle: 'Assistant Professor',
+    name: 'Ankit Singh',
+    jobTitle: 'Research Scholar',
     description:
-      'Neuroscientist specialising in Microglia Biology, Neuroimmunology, ' +
-      'and Neurodegeneration at the University of Delhi.',
-    url: 'https://shashank-portfolio-cg7p0viiu-aabhi00s-projects.vercel.app',
+      'Research Scholar in Neuroscience at Dr. B.R. Ambedkar Center for Biomedical Research (ACBR), ' +
+      'University of Delhi, specializing in Neuropharmacology, 3D-QSAR modeling, and Astrocyte Biology.',
+    url: 'https://shashank-portfolio-cg7p0viiu-aabhi00s-projects.vercel.app', // Update this to your live URL when deployed
     sameAs: [
       // These tell Google that these external profiles
-      // are all the SAME person as this page
-      // Add real URLs here — Google uses them to build
-      // the knowledge panel
-      'https://scholar.google.com/citations?user=8B8nXyoAAAAJ',
-      'https://www.du.ac.in',
+      // are all the SAME person as this page.
+      // NOTE: Replace YOUR_SCHOLAR_ID_HERE with your actual Google Scholar ID
+      'https://scholar.google.com/citations?user=yRtQFQUAAAAJ&hl=en',
+      'http://acbrdu.edu/',
     ],
     affiliation: {
       '@type': 'Organization',
-      name: 'University of Delhi',
-      url: 'https://www.du.ac.in',
-      department: 'Department of Zoology',
+      name: 'Dr. B.R. Ambedkar Center for Biomedical Research (ACBR), University of Delhi',
+      url: 'http://acbrdu.edu/',
+      department: 'Neuroscience',
     },
     alumniOf: [
       {
         '@type': 'Organization',
-        name: 'University of Delhi',
+        name: 'Banaras Hindu University',
       },
     ],
     knowsAbout: [
-      'Neurobiology',
-      'Microglia Biology',
-      'Neuroimmunology',
-      'Neurodegeneration',
-      'Pax6 Transcription Factor',
-      "Alzheimer's Disease",
+      'Neuropharmacology',
+      '3D-QSAR Modeling',
       "Parkinson's Disease",
-      'Molecular Docking',
-      'Epigenetics',
+      'Astrocyte Biology',
+      'Drug Discovery',
+      'Neuroprotection',
+      'Stem Cell Research',
+      'Computational Biology',
     ],
     // Number of publications — helps establish authority
-    numberOfPublications: 48,
+    numberOfPublications: 4,
   }
 
   // WebPage schema — tells Google what kind of page this is
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    name: 'Dr. Shashank Kumar Maurya — Research Portfolio',
+    name: 'Ankit Singh — Research Portfolio',
     description:
-      'Academic research portfolio of Dr. Shashank Kumar Maurya, ' +
-      'Assistant Professor of Neurobiology at University of Delhi.',
-    url: 'https://shashank-portfolio-cg7p0viiu-aabhi00s-projects.vercel.app',
+      'Academic research portfolio of Ankit Singh, ' +
+      'Research Scholar in Neuroscience at ACBR, University of Delhi.',
+    url: 'https://shashank-portfolio-cg7p0viiu-aabhi00s-projects.vercel.app', // Update this to your live URL when deployed
     mainEntity: {
       '@type': 'Person',
-      name: 'Shashank Kumar Maurya',
+      name: 'Ankit Singh',
     },
     // dateModified helps Google know the content is fresh
     dateModified: new Date().toISOString().split('T')[0],
